@@ -45,9 +45,9 @@
                                                         <div class="tg-themetagbox"><span
                                                                 class="tg-themetag">featured</span></div>
                                                         <div class="tg-booktitle">
-                                                            <h3><a href="javascript:void(0);">{{$book_hot->name}}</a></h3>
+                                                            <h3><a href="{{route('book-detail', ['id'=> $book_hot->id, 'author_id'=> $book_hot->author_id])}}">{{$book_hot->name}}</a></h3>
                                                         </div>
-                                                        <span class="tg-bookwriter">By: <a href="javascript:void(0);">{{$book_hot->Author->name}}</a></span>
+                                                        <span class="tg-bookwriter">By: <a href="{{route('author_detail', $book_hot->Author->id)}}">{{$book_hot->Author->name}}</a></span>
                                                         @php
                                                             $reviewed = false;
                                                         @endphp
@@ -357,50 +357,15 @@
                                     </div>
                                     <div class="tg-widgetcontent">
                                         <ul>
-                                            <li>
-                                                <div class="tg-author">
-                                                    <figure><a href="javascript:void(0);"><img
-                                                                src="{{asset('font_end/images/author/imag-03.jpg')}}"
-                                                                alt="image description"></a></figure>
-                                                    <div class="tg-authorcontent">
-                                                        <h2><a href="javascript:void(0);">Jude Morphew</a></h2>
-                                                        <span>21,658 Published Books</span>
+                                            @foreach($topauthor as $au)
+                                                <li>
+                                                    <figure><a href="{{route('author_detail', $au->id)}}"><img style="width: 100px; height: 100px" src="{{asset($au->image)}}" alt="image description"></a></figure>
+                                                    <div class="tg-authornamebooks">
+                                                        <h4><a href="{{route('author_detail', $au->id)}}">{{$au->name}}</a></h4>
+                                                        <p>{{$au->book_count}} cuốn sách được xuất bản</p>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tg-author">
-                                                    <figure><a href="javascript:void(0);"><img
-                                                                src="{{asset('font_end/images/author/imag-04.jpg')}}"
-                                                                alt="image description"></a></figure>
-                                                    <div class="tg-authorcontent">
-                                                        <h2><a href="javascript:void(0);">Jude Morphew</a></h2>
-                                                        <span>21,658 Published Books</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tg-author">
-                                                    <figure><a href="javascript:void(0);"><img
-                                                                src="{{asset('font_end/images/author/imag-05.jpg')}}"
-                                                                alt="image description"></a></figure>
-                                                    <div class="tg-authorcontent">
-                                                        <h2><a href="javascript:void(0);">Jude Morphew</a></h2>
-                                                        <span>21,658 Published Books</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tg-author">
-                                                    <figure><a href="javascript:void(0);"><img
-                                                                src="{{asset('font_end/images/author/imag-06.jpg')}}"
-                                                                alt="image description"></a></figure>
-                                                    <div class="tg-authorcontent">
-                                                        <h2><a href="javascript:void(0);">Jude Morphew</a></h2>
-                                                        <span>21,658 Published Books</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>

@@ -48,7 +48,32 @@
                                                             <h3><a href="{{route('book-detail', ['id'=> $book_hot->id, 'author_id'=> $book_hot->author_id])}}">{{$book_hot->name}}</a></h3>
                                                         </div>
                                                         <span class="tg-bookwriter">By: <a href="{{route('author_detail', $book_hot->Author->id)}}">{{$book_hot->Author->name}}</a></span>
-                                                        <span class="tg-stars"><span></span></span>
+                                                        @php
+                                                            $reviewed = false;
+                                                        @endphp
+                                                        @foreach($review as $r)
+                                                            @if($r->book_id == $book_hot->id)
+                                                                @php
+                                                                    $reviewed = true;
+                                                                @endphp
+                                                                <div class="rating @if($r->star == 1) stars1
+                                                    @elseif($r->star == 2) stars2
+                                                    @elseif($r->star == 3) stars3
+                                                    @elseif($r->star == 4) stars4
+                                                    @elseif($r->star == 5) stars5
+                                                    @else stars0 @endif">
+                                                                    @for ($i = 1; $i <= 5; $i++)
+                                                                        <span dat-rating="{{ $i }}"><i class="fa fa-star"
+                                                                                                       id="star{{$i}}"></i></span>
+                                                                    @endfor
+
+                                                                </div>
+
+                                                            @endif
+                                                        @endforeach
+                                                        @if (!$reviewed)
+                                                            <span>Chưa có đánh giá</span>
+                                                        @endif
                                                         <div class="tg-priceandbtn">
 																<span class="tg-bookprice">
 																	<ins>{{price_discount($book_hot->price, $book_hot->discount)}} VND</ins>

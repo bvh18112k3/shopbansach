@@ -239,13 +239,13 @@
                                     <a href="{{route('author')}}">Authors</a>
                                 </li>
                                 <li><a href="{{route('bestselling')}}">Best Selling</a></li>
+                                <li class="">
+                                    <a href="{{route('book')}}">Products</a>
+                                </li>
                                 <li class="menu-item-has-children">
                                     <a href="{{route('newlist')}}">Latest News</a>
                                 </li>
                                 <li><a href="{{route('contact')}}">Contact</a></li>
-                                <li class="">
-                                    <a href="{{route('book')}}">Products</a>
-                                </li>
                             </ul>
                         </div>
                     </nav>
